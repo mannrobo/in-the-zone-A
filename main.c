@@ -10,7 +10,12 @@
 
 #pragma platform(VEX2)
 #pragma competitionControl(Competition)
+
 #include "Vex_Competition_Includes.c"
+#include "constants.h"
+#include "control.c"
+
+bool killSwitch = false;
 
 // Pre Auton
 //   Executes before auton; must return for auton to start.
@@ -35,7 +40,9 @@ task usercontrol(){
 
   while (true) {
 
-    UserControlCodePlaceholderForTesting();
+    if (!killSwitch) {
+    	armControl();
+    }
 
   }
 }
