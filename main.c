@@ -1,8 +1,8 @@
 #pragma config(Motor,  port2,           leftClawmotor, tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           leftArmMotor,  tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           drvFrontLeft,  tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port5,           drvBackLeft,   tmotorVex393_MC29, openLoop)
-#pragma config(Motor,  port6,           drvBackRight,  tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port5,           drvBackLeft,   tmotorVex393_MC29, openLoop, reversed)
+#pragma config(Motor,  port6,           drvBackRight,  tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port7,           drvFrontRight, tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port8,           rightArmMotor, tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port9,           rightClawMotor, tmotorVex393_MC29, openLoop)
@@ -42,6 +42,7 @@ task usercontrol(){
 
     if (!killSwitch) {
     	armControl();
+    	driveControl();
     }
 
   }
