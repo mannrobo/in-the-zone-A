@@ -1,4 +1,4 @@
-#pragma config(Motor,  port2,           leftClawmotor, tmotorVex393_MC29, openLoop)
+#pragma config(Motor,  port2,           leftClawMotor, tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           leftArmMotor,  tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           drvFrontLeft,  tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port5,           drvBackLeft,   tmotorVex393_MC29, openLoop, reversed)
@@ -11,11 +11,11 @@
 #pragma platform(VEX2)
 #pragma competitionControl(Competition)
 
+bool killSwitchState;
+
 #include "Vex_Competition_Includes.c"
 #include "constants.h"
 #include "control.c"
-
-bool killSwitch = false;
 
 // Pre Auton
 //   Executes before auton; must return for auton to start.
@@ -38,12 +38,15 @@ task autonomous(){
 // User Control Task
 task usercontrol(){
 
-  while (true) {
+	killSwitchState = true;
 
-    if (!killSwitch) {
+  while (true) {
+    if (!killSwitch()) {
     	armControl();
     	driveControl();
+    	clawControl();
+    } else {
+    	halt();
     }
-
   }
 }

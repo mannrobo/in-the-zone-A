@@ -13,12 +13,26 @@ void setDrive(int x, int y) {
 
 void driveControl() {
 
-	setDrive(vexRT[Ch4], vexRT[Ch3]);
+	int x = (vexRT[Ch4] > DEADZONE) ? (vexRT[Ch4]) : (0);
+	int y = (vexRT[Ch3] > DEADZONE) ? (vexRT[Ch3]) : (0);
+
+	setDrive(x, y);
 
 }
 
+void setClaw(int speed) {
+	motor[rightClawMotor] = speed;
+	motor[leftClawMotor]  = speed;
+}
+
 void clawControl() {
-	bool DONOTHING = false;
+	if (vexRT[Btn5U]) {
+		setClaw(MOTOR_MAX);
+	} else if (vexRT[Btn5D]){
+		setClaw(-1 * MOTOR_MAX);
+	} else {
+		setClaw(MOTOR_OFF);
+	}
 }
 
 void setArm(int speed) {
@@ -32,6 +46,29 @@ void armControl() {
 	} else if (vexRT[Btn6D]) {
 		setArm(-1 * MOTOR_MAX);
 	} else {
-		setArm(0);
+		setArm(MOTOR_OFF);
 	}
+}
+
+void halt() {
+	setArm(MOTOR_OFF);
+	setDrive(MOTOR_OFF, MOTOR_OFF);
+	setClaw(MOTOR_OFF);
+}
+
+void lockdown() {
+	while(true) {
+		halt();
+	}
+}
+
+bool killSwitch() {
+	if (vexRT[Btn7D] == 1 && vexRT[Btn8D] == 1) {
+		killSwitchState = true;
+		halt();
+	} else if (vexRT[Btn7U] == 1 && vexRT[Btn8U] == 1) {
+		killSwitchState = false;
+	}
+
+	return killSwitchState;
 }
