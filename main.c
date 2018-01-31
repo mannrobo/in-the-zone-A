@@ -45,7 +45,8 @@ task usercontrol(){
     if (!killSwitch()) {
     	armControl();
     	driveControl();
-    	clawControl();
+      clawControl();
+      liftControl();
     } else {
     	halt();
     }

@@ -50,10 +50,26 @@ void armControl() {
 	}
 }
 
+void setLift(int speed) {
+	motor[leftLiftMotor] = speed;
+	motor[rightLiftMotor] = speed;
+}
+
+void liftControl() {
+	if (vexRT[Btn8U]) {
+		setLift(MOTOR_MAX);
+	} else if (vexRT[Btn8D]) {
+		setLift(-1 * MOTOR_MAX);
+	} else {
+		setLift(MOTOR_OFF);
+	}
+}
+
 void halt() {
 	setArm(MOTOR_OFF);
 	setDrive(MOTOR_OFF, MOTOR_OFF);
 	setClaw(MOTOR_OFF);
+	setLift(MOTOR_OFF);
 }
 
 void lockdown() {
