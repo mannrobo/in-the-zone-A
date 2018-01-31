@@ -21,8 +21,7 @@ void driveControl() {
 }
 
 void setClaw(int speed) {
-	motor[rightClawMotor] = speed;
-	motor[leftClawMotor]  = speed;
+	motor[clawMotor] = speed;
 }
 
 void clawControl() {
