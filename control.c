@@ -13,11 +13,16 @@ void setDrive(int x, int y) {
 
 void driveControl() {
 
-	int x = (vexRT[Ch4] > DEADZONE) ? (vexRT[Ch4]) : (0);
-	int y = (vexRT[Ch3] > DEADZONE) ? (vexRT[Ch3]) : (0);
+	int a = (abs(vexRT[Ch4]) > DEADZONE) ? (vexRT[Ch4]) : (0);
+	int b = (abs(vexRT[Ch3]) > DEADZONE) ? (vexRT[Ch3]) : (0);
 
-	setDrive(x, y);
+	if (INV_DRV_A) {
+		a *= -1;
+		b *= -1;
+	}
 
+	if (INV_DRV_B) setDrive(b, a);
+	else           setDrive(a, b);
 }
 
 void setClaw(int speed) {
@@ -55,13 +60,19 @@ void setLift(int speed) {
 }
 
 void liftControl() {
-	if (vexRT[Btn8U]) {
+	if (vexRT[Btn8R]) {
 		setLift(MOTOR_MAX);
-	} else if (vexRT[Btn8D]) {
+	} else if (vexRT[Btn8L]) {
 		setLift(-1 * MOTOR_MAX);
 	} else {
 		setLift(MOTOR_OFF);
 	}
+}
+
+void setLEDs(int red = -1, int yellow = -1, int green = -1) {
+	if (red    > -1 && red    < 2) SensorValue[LEDred]    = red;
+	if (yellow > -1 && yellow < 2) SensorValue[LEDyellow] = yellow;
+	if (green  > -1 && green  < 2) SensorValue[LEDgreen]  = green;
 }
 
 void halt() {
@@ -84,6 +95,7 @@ bool killSwitch() {
 	} else if (vexRT[Btn7U] == 1 && vexRT[Btn8U] == 1) {
 		killSwitchState = false;
 	}
-
+	if (killSwitchState) setLEDs(1);
+	else                 setLEDs(0);
 	return killSwitchState;
 }
