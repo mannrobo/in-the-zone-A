@@ -39,6 +39,7 @@ void clawControl() {
 	}
 }
 
+/*
 void setArm(int speed) {
 	motor[leftArmMotor]  = speed;
 	motor[rightArmMotor] = -speed;
@@ -53,10 +54,13 @@ void armControl() {
 		setArm(MOTOR_OFF);
 	}
 }
+*/
 
 void setLift(int speed) {
-	motor[leftLiftMotor] = speed;
-	motor[rightLiftMotor] = speed;
+	motor[leftLowerLiftMotor]  = speed;
+	motor[leftUpperLiftMotor]  = speed;
+	motor[rightLowerLiftMotor] = speed;
+	motor[rightUpperLiftMotor] = speed;
 }
 
 void liftControl() {
@@ -76,7 +80,7 @@ void setLEDs(int red = -1, int yellow = -1, int green = -1) {
 }
 
 void halt() {
-	setArm(MOTOR_OFF);
+	//setArm(MOTOR_OFF);
 	setDrive(MOTOR_OFF, MOTOR_OFF);
 	setClaw(MOTOR_OFF);
 	setLift(MOTOR_OFF);
