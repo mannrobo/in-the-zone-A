@@ -25,6 +25,7 @@ void driveControl() {
 	else           setDrive(a, b);
 }
 
+/*
 void setClaw(int speed) {
 	motor[clawMotor] = speed;
 }
@@ -38,6 +39,7 @@ void clawControl() {
 		setClaw(MOTOR_OFF);
 	}
 }
+*/
 
 /*
 void setArm(int speed) {
@@ -65,9 +67,9 @@ void setLift(int speed) {
 
 void liftControl() {
 	if (vexRT[Btn8R]) {
-		setLift(MOTOR_MAX);
+		setLift(LIFT_SPEED);
 	} else if (vexRT[Btn8L]) {
-		setLift(-1 * MOTOR_MAX);
+		setLift(-1 * LIFT_SPEED);
 	} else {
 		setLift(MOTOR_OFF);
 	}
@@ -82,7 +84,7 @@ void setLEDs(int red = -1, int yellow = -1, int green = -1) {
 void halt() {
 	//setArm(MOTOR_OFF);
 	setDrive(MOTOR_OFF, MOTOR_OFF);
-	setClaw(MOTOR_OFF);
+	//setClaw(MOTOR_OFF);
 	setLift(MOTOR_OFF);
 }
 

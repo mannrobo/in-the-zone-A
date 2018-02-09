@@ -50,14 +50,14 @@ task usercontrol(){
 	killSwitchState = KS_DEFAULT;
 	setLEDs(0, 0, 1);
 
-  while (true) {
-    if (!killSwitch()) {
-    	//armControl();
-    	driveControl();
-      clawControl();
-      liftControl();
-    } else {
-    	halt();
-    }
-  }
+	while (true) {
+		if (!killSwitch()) {
+			//armControl();
+			driveControl();
+			//clawControl();
+			liftControl();
+		} else {
+			halt();
+		}
+	}
 }
