@@ -52,9 +52,7 @@ task usercontrol(){
 
 	while (true) {
 		if (!killSwitch()) {
-			//armControl();
 			driveControl();
-			//clawControl();
 			liftControl();
 		} else {
 			halt();
