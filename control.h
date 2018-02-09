@@ -66,7 +66,9 @@ bool killSwitch() {
 	} else if (vexRT[Btn7U] == 1 && vexRT[Btn8U] == 1) {
 		killSwitchState = false;
 	}
+
 	if (killSwitchState) setLEDs(1);
 	else                 setLEDs(0);
+
 	return killSwitchState;
 }
