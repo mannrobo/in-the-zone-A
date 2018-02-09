@@ -23,7 +23,7 @@ bool killSwitchState;
 #include "Vex_Competition_Includes.c"
 #include "constants.h"
 #include "settings.h"
-#include "control.c"
+#include "control.h"
 
 // Pre Auton
 //   Executes before auton; must return for auton to start.
