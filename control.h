@@ -14,7 +14,7 @@ void setDrive(int x, int y) {
 void driveControl() {
 
 	int a = (abs(vexRT[Ch4]) > DEADZONE) ? (vexRT[Ch4]) : (0);
-	int b = (abs(vexRT[Ch3]) > DEADZONE) ? (vexRT[Ch3]) : (0);
+	int b = (abs(vexRT[Ch2]) > DEADZONE) ? (vexRT[Ch2]) : (0);
 
 	if (INV_DRV_A) {
 		a *= -1;
@@ -33,12 +33,23 @@ void setLift(int speed) {
 }
 
 void liftControl() {
-	if (vexRT[Btn8R]) {
+	if (vexRT[Btn6U]) {
 		setLift(LIFT_SPEED);
-	} else if (vexRT[Btn8L]) {
+	} else if (vexRT[Btn6D]) {
 		setLift(-1 * LIFT_SPEED);
 	} else {
 		setLift(MOTOR_OFF);
+	}
+}
+
+void resetQuads() {
+	SensorValue[quadLeft] = 0;
+	SensorValue[quadRight]  = 0;
+}
+
+void encoderControl() {
+	if (vexRT[Btn7L]) {
+		resetQuads();
 	}
 }
 
