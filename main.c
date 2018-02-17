@@ -1,4 +1,5 @@
 #pragma config(Sensor, dgtl1,  quadLeft,       sensorQuadEncoder)
+#pragma config(Sensor, dgtl3,  mgDetect,       sensorTouch)
 #pragma config(Sensor, dgtl5,  LEDgreen,       sensorLEDtoVCC)
 #pragma config(Sensor, dgtl6,  LEDyellow,      sensorLEDtoVCC)
 #pragma config(Sensor, dgtl7,  LEDred,         sensorLEDtoVCC)
@@ -41,11 +42,15 @@ task autonomous(){
 
 	setLEDs(0, 1, 0);
 
-	if (SensorValue[progSkills] == 1) {
+	if (NO_AUTONOMOUS_WHATSOEVER) {
+		autonNOPE();
+	} else if (SensorValue[progSkills] == 1) {
 		auton60();
-	} else {
+	} else if (ENABLE_MATCH_AUTON) {
 		auton15();
-	}
+	} else {
+    autonNOPE();
+  }
 
 }
 
