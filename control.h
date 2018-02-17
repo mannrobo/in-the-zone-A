@@ -1,8 +1,13 @@
 
-void setDrive(int x, int y) {
+void setDrive(int a, int b) {
 
-	int left  = (y + x) / 2;
-	int right = (y - x) / 2;
+	if (INV_DRV_A) {
+		a *= -1;
+		b *= -1;
+	}
+
+	int left  = (INV_DRV_B) ? ((b + a) / 2) : ((a + b) / 2);
+	int right = (INV_DRV_B) ? ((b - a) / 2) : ((a - b) / 2);
 
 	motor[drvFrontRight] = right;
 	motor[drvBackRight]  = right;
@@ -13,16 +18,11 @@ void setDrive(int x, int y) {
 
 void driveControl() {
 
-	int a = (abs(vexRT[Ch4]) > DEADZONE) ? (vexRT[Ch4]) : (0);
-	int b = (abs(vexRT[Ch2]) > DEADZONE) ? (vexRT[Ch2]) : (0);
+	int x = (abs(vexRT[Ch4]) > DEADZONE) ? (vexRT[Ch4]) : (0);
+	int y = (abs(vexRT[Ch3]) > DEADZONE) ? (vexRT[Ch3]) : (0);
 
-	if (INV_DRV_A) {
-		a *= -1;
-		b *= -1;
-	}
 
-	if (INV_DRV_B) setDrive(b, a);
-	else           setDrive(a, b);
+	setDrive(x, y);
 }
 
 void setLift(int speed) {
@@ -33,9 +33,9 @@ void setLift(int speed) {
 }
 
 void liftControl() {
-	if (vexRT[Btn6U]) {
+	if (vexRT[Btn6U] || vexRT[Btn8L]) {
 		setLift(LIFT_SPEED);
-	} else if (vexRT[Btn6D]) {
+	} else if (vexRT[Btn6D] || vexRT[Btn8R]) {
 		setLift(-1 * LIFT_SPEED);
 	} else {
 		setLift(MOTOR_OFF);
