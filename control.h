@@ -6,8 +6,8 @@ void setDrive(int a, int b) {
 		b *= -1;
 	}
 
-	int left  = (INV_DRV_B) ? ((b + a) / 2) : ((a + b) / 2);
-	int right = (INV_DRV_B) ? ((b - a) / 2) : ((a - b) / 2);
+	int left  = (INV_DRV_B) ? ((b + a) ) : ((a + b) );
+	int right = (INV_DRV_B) ? ((b - a) ) : ((a - b) );
 
 	motor[drvFrontRight] = right;
 	motor[drvBackRight]  = right;

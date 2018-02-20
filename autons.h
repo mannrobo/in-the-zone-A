@@ -30,15 +30,8 @@ void autonNOPE() {
 
 void auton60() {
 
-	setDrive(MOTOR_OFF, MOTOR_MAX);
-	wait1Msec(FWD_DELAY)
-
-}
-
-void auton15() {
-
-	//Auton Configuration
-	const int DRV_FORWARD_TICKS = 5000;
+//Auton Configuration
+	const int DRV_FORWARDS_TIME = 6000;
 	const int MG_LIFT_RAISE_TIME = 100;
 	const int DRV_TURN_TICKS = 500;
 	const int DRV_BACK_TICKS = 5000;
@@ -50,7 +43,7 @@ void auton15() {
 
 	//Drive forward.
 	setDrive(MOTOR_OFF, MOTOR_MAX);
-	waitTicks(DRV_FORWARD_TICKS);
+	wait10Msec(DRV_FORWARDS_TIME);
 	halt();
 
 	// Lift mobile goal
@@ -76,6 +69,15 @@ void auton15() {
 	// drive backwards
 	setDrive(MOTOR_OFF, -1 * MOTOR_MAX);
 	wait10Msec(DRV_BACKWARDS_TIME);
+	halt();
+
+}
+
+void auton15() {
+
+
+	setDrive(MOTOR_OFF, MOTOR_MAX);
+	wait1Msec(5000);
 	halt();
 
 
