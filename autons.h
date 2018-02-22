@@ -3,12 +3,12 @@ void waitTicks(int ticks, int timeout = -1) {
 
 	resetQuads();
 	ticks = abs(ticks);
-	timeout *= 100;
+	timeout *= 1000;
 
 	while (abs(SensorValue[quadLeft])  - QUAD_TOLERANCE < ticks &&
-		   abs(SensorValue[quadRight]) - QUAD_TOLERANCE < ticks && (timeout > 0 || timeout == -10))  {
-		wait10Msec(10);
-		if (timeout != -10) timeout -= 10;
+		   abs(SensorValue[quadRight]) - QUAD_TOLERANCE < ticks && (timeout > 0 || timeout == -1000))  {
+		wait1Msec(100);
+		if (timeout != -1000) timeout -= 100;
 	}
 }
 
@@ -22,33 +22,27 @@ void waitBump(int ticks, int timeout = 2) {
 	}
 };
 
-void autonNOPE() {
-	while (true) {
-		wait10Msec(10);
-	}
-}
-
 void auton60() {
 
-//Auton Configuration
-	const int DRV_FORWARDS_TIME = 6000;
-	const int MG_LIFT_RAISE_TIME = 100;
-	const int DRV_TURN_TICKS = 500;
-	const int DRV_BACK_TICKS = 5000;
+	//Auton Configuration
+	const int DRV_FORWARDS_TICKS = 1300;
+	const int MG_LIFT_RAISE_TIME = 1000;
+	const int DRV_TURN_TICKS = 620;
+	const int DRV_BACK_TICKS = 2000; //2000 ok for 10 pts
 	const int MG_LIFT_LOWER_TIME = MG_LIFT_RAISE_TIME;
-	const int DRV_BACKWARDS_TIME = 500;
+	const int DRV_BACKWARDS_TICKS = 400;
 
 	halt();
 	resetQuads();
 
 	//Drive forward.
 	setDrive(MOTOR_OFF, MOTOR_MAX);
-	wait10Msec(DRV_FORWARDS_TIME);
+	waitTicks(DRV_FORWARDS_TICKS);
 	halt();
 
 	// Lift mobile goal
 	setLift(MOTOR_MAX);
-	wait10Msec(MG_LIFT_RAISE_TIME);
+	wait1Msec(MG_LIFT_RAISE_TIME);
 	halt();
 
 	// turn 180
@@ -63,12 +57,12 @@ void auton60() {
 
 	// lower lift
 	setLift(-1 * MOTOR_MAX);
-	wait10Msec(MG_LIFT_LOWER_TIME);
+	wait1Msec(MG_LIFT_LOWER_TIME);
 	halt();
 
 	// drive backwards
 	setDrive(MOTOR_OFF, -1 * MOTOR_MAX);
-	wait10Msec(DRV_BACKWARDS_TIME);
+	waitTicks(DRV_BACKWARDS_TICKS);
 	halt();
 
 }
