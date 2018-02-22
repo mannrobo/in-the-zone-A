@@ -29,7 +29,7 @@ bool killSwitchState;
 // Pre Auton
 //   Executes before auton; must return for auton to start.
 
-void pre_auton(){
+void pre_auton() {
 
   	bStopTasksBetweenModes = true;         // Allow competition modes to control tasks.
 	bDisplayCompetitionStatusOnLcd = true; // Use default LCD output from competition.
@@ -38,24 +38,26 @@ void pre_auton(){
 }
 
 // Autonomous Task
-task autonomous(){
+task autonomous() {
 
 	setLEDs(0, 1, 0);
 
-	if (NO_AUTONOMOUS_WHATSOEVER) {
-		autonNOPE();
-	} else if (SensorValue[progSkills] == 1) {
-		auton60();
-	} else if (ENABLE_MATCH_AUTON) {
-		auton15();
-	} else {
-    autonNOPE();
-  }
+	if (!NO_AUTONOMOUS_WHATSOEVER) {
+
+		if (SensorValue[progSkills] == 1) {
+			auton60();
+		} else if (ENABLE_MATCH_AUTON) {
+			auton15();
+		}
+
+	}
+
+	setLEDs(1, 1, 0);
 
 }
 
 // User Control Task
-task usercontrol(){
+task usercontrol() {
 
 	killSwitchState = KS_DEFAULT;
 	setLEDs(0, 0, 1);
