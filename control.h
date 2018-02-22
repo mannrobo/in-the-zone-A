@@ -1,13 +1,16 @@
 
 void setDrive(int a, int b) {
 
+	a *= DRIVE_SPEED;
+	b *= DRIVE_SPEED;
+
 	if (INV_DRV_A) {
 		a *= -1;
 		b *= -1;
 	}
 
-	int left  = (INV_DRV_B) ? ((b + a) ) : ((a + b) );
-	int right = (INV_DRV_B) ? ((b - a) ) : ((a - b) );
+	int left  = (INV_DRV_B) ? (b + a) : (a + b);
+	int right = (INV_DRV_B) ? (b - a) : (a - b);
 
 	motor[drvFrontRight] = right;
 	motor[drvBackRight]  = right;
