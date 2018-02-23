@@ -28,7 +28,9 @@ void auton60() {
 	const int DRV_FORWARDS_TICKS = 1300;
 	const int MG_LIFT_RAISE_TIME = 1000;
 	const int DRV_TURN_TICKS = 600;
-	const int DRV_BACK_TICKS = 2000; //2000 ok for 10 pts
+	const int DRV_BACK_TICKS = 1600; //2000 ok for 10 pts
+	const int DRV_ADJUST_TURN_TICKS = 170;
+	const int DRV_CONTINUE_TICKS = 600;
 	const int MG_LIFT_LOWER_TIME = MG_LIFT_RAISE_TIME;
 	const int DRV_BACKWARDS_TICKS = 400;
 
@@ -53,6 +55,18 @@ void auton60() {
 	// drive forward
 	setDrive(MOTOR_OFF, MOTOR_MAX);
 	waitTicks(DRV_BACK_TICKS);
+	halt();
+
+	// adjustment turn
+	setDrive(6 * MOTOR_MAX / 16, MOTOR_OFF);
+	waitTicks(DRV_ADJUST_TURN_TICKS);
+	setDrive(-1 * 6 * MOTOR_MAX / 16, MOTOR_OFF);
+	waitTicks(DRV_ADJUST_TURN_TICKS);
+	halt();
+
+	//continue forward
+	setDrive(MOTOR_OFF, MOTOR_MAX);
+	waitTicks(DRV_CONTINUE_TICKS);
 	halt();
 
 	// lower lift
