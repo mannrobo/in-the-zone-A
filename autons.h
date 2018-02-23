@@ -71,10 +71,10 @@ void auton15() {
 
 
 	//Auton Configuration
-	const int DRV_FORWARDS_TICKS = 2000;
-	const int MG_LIFT_RAISE_TIME = 1000;
-	const int DRV_TURN_TICKS = 600;
-	const int DRV_BACK_TICKS = 2000; //2000 ok for 10 pts
+	const int DRV_FORWARDS_TICKS = 1600;
+	const int MG_LIFT_RAISE_TIME = 500;
+	const int DRV_TURN_TICKS = 640;
+	const int DRV_BACK_TICKS = 2200; //2000 ok for 10 pts
 	const int MG_LIFT_LOWER_TIME = MG_LIFT_RAISE_TIME;
 	const int DRV_BACKWARDS_TICKS = 400;
 
@@ -92,7 +92,7 @@ void auton15() {
 	halt();
 
 	// turn 180
-	setDrive(MOTOR_MAX, MOTOR_OFF);
+	setDrive(-1 * MOTOR_MAX, MOTOR_OFF);
 	waitTicks(DRV_TURN_TICKS, 2);
 	halt();
 
