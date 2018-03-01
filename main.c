@@ -40,6 +40,7 @@ void pre_auton() {
 // Autonomous Task
 task autonomous() {
 
+	writeDebugStreamLine("Autonomous program initiated.");
 	setLEDs(0, 1, 0);
 
 	if (!NO_AUTONOMOUS_WHATSOEVER) {
@@ -52,6 +53,8 @@ task autonomous() {
 
 	}
 
+	writeDebugStreamLine("Autonomous program execution complete.");
+
 	setLEDs(1, 1, 0);
 
 }
@@ -59,10 +62,15 @@ task autonomous() {
 // User Control Task
 task usercontrol() {
 
+	writeDebugStreamLine("Driver mode activated.");
+
 	killSwitchState = KS_DEFAULT;
 	setLEDs(0, 0, 1);
 
 	while (true) {
+
+		if ( ((int)nPgmTime) % 10000 == 0) writeDebugStreamLine("Battery Voltage: %f", nImmediateBatteryLevel / 1000.0);
+
 		if (!killSwitch()) {
 			driveControl();
 			liftControl();

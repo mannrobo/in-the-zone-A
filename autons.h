@@ -87,7 +87,7 @@ void auton15() {
 	//Auton Configuration
 	const int DRV_FORWARDS_TICKS = 1600;
 	const int MG_LIFT_RAISE_TIME = 500;
-	const int DRV_TURN_TICKS = 640;
+	const int DRV_TURN_TICKS = 610; // 640
 	const int DRV_BACK_TICKS = 2200; //2000 ok for 10 pts
 	const int MG_LIFT_LOWER_TIME = MG_LIFT_RAISE_TIME;
 	const int DRV_BACKWARDS_TICKS = 400;
