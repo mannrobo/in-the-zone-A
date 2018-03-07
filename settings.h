@@ -11,10 +11,15 @@ const bool KS_DEFAULT = false;  //DEFAULTS: { true  for practice
 const int QUAD_TOLERANCE = 20;
 
 const int LIFT_SPEED = MOTOR_MAX; //DEFAULT: MOTOR_MAX
+const int CLAW_SPEED = MOTOR_MAX; //DEFAULT: MOTOR_MAX
+
+
 const int DEADZONE = 40; //DEFAULT: 40
 
 const bool ENABLE_MATCH_AUTON = true;
 const bool NO_AUTONOMOUS_WHATSOEVER = false;
+
+const int AUTON_SAFETY = 100;
 
 const float DRIVE_SPEED = 1.0;
 

@@ -57,7 +57,7 @@ void auton60() {
 	halt();
 
 	// Lift mobile goal
-	setLift(MOTOR_MAX);
+	setMGLift(MOTOR_MAX);
 	wait1Msec(MG_LIFT_RAISE_TIME);
 	halt();
 
@@ -84,7 +84,7 @@ void auton60() {
 	halt();
 
 	// lower lift
-	setLift(-1 * MOTOR_MAX);
+	setMGLift(-1 * MOTOR_MAX);
 	wait1Msec(MG_LIFT_LOWER_TIME);
 	halt();
 
@@ -115,7 +115,7 @@ void auton15() {
 	halt();
 
 	// Lift mobile goal
-	setLift(MOTOR_MAX);
+	setMGLift(MOTOR_MAX);
 	wait1Msec(MG_LIFT_RAISE_TIME);
 	halt();
 
@@ -130,7 +130,7 @@ void auton15() {
 	halt();
 
 	// lower lift
-	setLift(-1 * MOTOR_MAX);
+	setMGLift(-1 * MOTOR_MAX);
 	wait1Msec(MG_LIFT_LOWER_TIME);
 	halt();
 

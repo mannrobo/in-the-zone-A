@@ -12,11 +12,11 @@ void setDrive(int a, int b) {
 	int left  = (INV_DRV_B) ? (b + a) : (a + b);
 	int right = (INV_DRV_B) ? (b - a) : (a - b);
 
-	motor[drvFrontRight] = right;
-	motor[drvBackRight]  = right;
+	motor[drvTopRight] = right;
+	motor[drvBottomRight]  = right;
 
-	motor[drvFrontLeft]  = left;
-	motor[drvBackLeft]   = left;
+	motor[drvTopLeft]  = left;
+	motor[drvBottomLeft]   = left;
 }
 
 void driveControl() {
@@ -28,20 +28,48 @@ void driveControl() {
 	setDrive(x, y);
 }
 
-void setLift(int speed) {
-	motor[leftLowerLiftMotor]  = speed;
-	motor[leftUpperLiftMotor]  = speed;
-	motor[rightLowerLiftMotor] = speed;
-	motor[rightUpperLiftMotor] = speed;
+void setMGLift(int speed) {
+	motor[leftMGLift]  = speed;
+	motor[rightMGLift]  = speed;
 }
 
-void liftControl() {
+void mgLiftControl() {
 	if (vexRT[Btn6U] || vexRT[Btn8L]) {
-		setLift(LIFT_SPEED);
+		setMGLift(LIFT_SPEED);
 	} else if (vexRT[Btn6D] || vexRT[Btn8R]) {
-		setLift(-1 * LIFT_SPEED);
+		setMGLift(-1 * LIFT_SPEED);
 	} else {
-		setLift(MOTOR_OFF);
+		setMGLift(MOTOR_OFF);
+	}
+}
+
+
+void setConeLift(int speed) {
+	motor[leftMGLift]  = speed;
+	motor[rightMGLift]  = speed;
+}
+
+void coneLiftControl() {
+	if (vexRT[Btn5U]) {
+		setMGLift(LIFT_SPEED);
+	} else if (vexRT[Btn5D]) {
+		setConeLift(-1 * LIFT_SPEED);
+	} else {
+		setConeLift(MOTOR_OFF);
+	}
+}
+
+void setClaw(int speed) {
+	motor[claw]  = speed;
+}
+
+void clawControl() {
+	if (vexRT[Btn7L]) {
+		setClaw(CLAW_SPEED);
+	} else if (vexRT[Btn7R]) {
+		setClaw(-1 * CLAW_SPEED);
+	} else {
+		setClaw(MOTOR_OFF);
 	}
 }
 
@@ -64,7 +92,9 @@ void setLEDs(int red = -1, int yellow = -1, int green = -1) {
 
 void halt() {
 	setDrive(MOTOR_OFF, MOTOR_OFF);
-	setLift(MOTOR_OFF);
+	setMGLift(MOTOR_OFF);
+	setConeLift(MOTOR_OFF);
+	setClaw(MOTOR_OFF);
 }
 
 void lockdown() {
