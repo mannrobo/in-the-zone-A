@@ -68,8 +68,12 @@ void halt() {
 }
 
 void lockdown() {
-	while(true) {
+	bool locked = true;
+
+	while(locked) {
 		halt();
+		if (nPgmTime % 1000 == 0) setLEDs(1, 0, 0);
+		else if (nPgmTime % 500 == 0) setLEDs(0,0,0);
 	}
 }
 
