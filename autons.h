@@ -1,4 +1,17 @@
 
+
+void safetyCheck() {
+	int qR = abs(SensorValue[quadRight]);
+	int qL = abs(SensorValue[quadLeft]);
+
+	int diff = abs(qL - qR);
+
+	if (diff > AUTON_SAFETY) {
+		writeDebugStreamLine("AUTON SAFETY TRIGGERED. PERMANENT HALT UNTIL DRIVER.");
+		lockdown();
+	}
+}
+
 void waitTicks(int ticks, int timeout = -1) {
 
 	resetQuads();
@@ -8,6 +21,7 @@ void waitTicks(int ticks, int timeout = -1) {
 	while (abs(SensorValue[quadLeft])  - QUAD_TOLERANCE < ticks &&
 		   abs(SensorValue[quadRight]) - QUAD_TOLERANCE < ticks && (timeout > 0 || timeout == -1000))  {
 		wait1Msec(100);
+		safetyCheck();
 		if (timeout != -1000) timeout -= 100;
 	}
 }
