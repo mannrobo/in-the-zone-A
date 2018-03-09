@@ -51,11 +51,11 @@ void setConeLift(int speed) {
 
 void coneLiftControl() {
 	if (vexRT[Btn5U]) {
-		setConeLift(CONE_LIFT_SPEED);
+		setConeLift(CONE_LIFT_R_SPEED);
 	} else if (vexRT[Btn5D]) {
-		setConeLift(-1 * CONE_LIFT_SPEED);
+		setConeLift(-1 * CONE_LIFT_L_SPEED);
 	} else {
-		setConeLift(20);
+		setConeLift(CONE_LIFT_HOLD);
 	}
 }
 
