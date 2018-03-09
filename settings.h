@@ -10,7 +10,8 @@ const bool KS_DEFAULT = false;  //DEFAULTS: { true  for practice
 
 const int QUAD_TOLERANCE = 20;
 
-const int LIFT_SPEED = MOTOR_MAX; //DEFAULT: MOTOR_MAX
+const int MG_LIFT_SPEED = MOTOR_MAX; //DEFAULT: MOTOR_MAX
+const int CONE_LIFT_SPEED = MOTOR_MAX / 2; //DEFAULT: MOTOR_MAX
 const int CLAW_SPEED = MOTOR_MAX; //DEFAULT: MOTOR_MAX
 
 

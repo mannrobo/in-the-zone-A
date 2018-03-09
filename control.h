@@ -35,9 +35,9 @@ void setMGLift(int speed) {
 
 void mgLiftControl() {
 	if (vexRT[Btn6U] || vexRT[Btn8L]) {
-		setMGLift(LIFT_SPEED);
+		setMGLift(MG_LIFT_SPEED);
 	} else if (vexRT[Btn6D] || vexRT[Btn8R]) {
-		setMGLift(-1 * LIFT_SPEED);
+		setMGLift(-1 * MG_LIFT_SPEED);
 	} else {
 		setMGLift(MOTOR_OFF);
 	}
@@ -45,17 +45,17 @@ void mgLiftControl() {
 
 
 void setConeLift(int speed) {
-	motor[leftMGLift]  = speed;
-	motor[rightMGLift]  = speed;
+	motor[leftCLift]  = speed;
+	motor[rightCLift]  = speed;
 }
 
 void coneLiftControl() {
 	if (vexRT[Btn5U]) {
-		setMGLift(LIFT_SPEED);
+		setConeLift(CONE_LIFT_SPEED);
 	} else if (vexRT[Btn5D]) {
-		setConeLift(-1 * LIFT_SPEED);
+		setConeLift(-1 * CONE_LIFT_SPEED);
 	} else {
-		setConeLift(MOTOR_OFF);
+		setConeLift(20);
 	}
 }
 
