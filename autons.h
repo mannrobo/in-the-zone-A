@@ -21,7 +21,7 @@ void waitTicks(int ticks, int timeout = -1) {
 	while (abs(SensorValue[quadLeft])  - QUAD_TOLERANCE < ticks &&
 		   abs(SensorValue[quadRight]) - QUAD_TOLERANCE < ticks && (timeout > 0 || timeout == -1000))  {
 		wait1Msec(100);
-		safetyCheck();
+		if (SensorValue[progSkills] == 0) safetyCheck();
 		if (timeout != -1000) timeout -= 100;
 	}
 }
